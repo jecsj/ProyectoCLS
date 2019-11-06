@@ -1,0 +1,63 @@
+disparador :
+- maestro
+
+variables :
+
+  # Conexión de Azure Resource Manager creada durante la creación de canalización
+  azureSubscription : ' {{azureRmConnection.Id}} '
+  
+  # Nombre de la aplicación web
+  webAppName : ' {{webAppName}} '
+
+  # Nombre del entorno
+  environmentName : ' {{webAppName}} '
+  
+  # Nombre de la imagen del agente VM
+  vmImageName : ' ubuntu-latest '
+
+etapas :
+- etapa : construir
+  displayName : etapa de construcción
+  trabajos :
+  - trabajo : MavenPackageAndPublishArtifacts
+    displayName : Paquete Maven y Publicar Artefactos
+    piscina :
+      vmImage : $ (vmImageName)
+    
+    pasos :
+    - tarea : Maven @ 3
+      displayName : ' Paquete Maven '
+      entradas :
+        mavenPomFile : ' pom.xml '
+
+    - tarea : CopyFiles @ 2
+      displayName : ' Copiar archivos al directorio de ensayo de artefactos '
+      entradas :
+        SourceFolder : ' $ (System.DefaultWorkingDirectory) '
+        Contenido : ' ** / target / *.? (War | jar) '
+        TargetFolder : $ (Build.ArtifactStagingDirectory)
+
+    - cargar : $ (Build.ArtifactStagingDirectory)
+      artefacto : soltar
+
+- etapa : Implementar
+  displayName : etapa de implementación
+  depende de : construir
+  condición : exitosa ()
+  trabajos :
+  - implementación : DeployLinuxWebApp
+    displayName : Implementar la aplicación web de Linux
+    entorno : $ (nombreDeEntorno)
+    piscina :
+      vmImage : $ (vmImageName)
+    estrategia :
+      runOnce :
+        desplegar :
+          pasos :
+          - tarea : AzureWebApp @ 1
+            displayName : ' Implementación de la aplicación web de Azure: {{webAppName}} '
+            entradas :
+              azureSubscription : $ (azureSubscription)
+              appType : webAppLinux
+              appName : $ (webAppName)
+              paquete : ' $ (Pipeline.Workspace) / drop / ** / target / *.? (war | jar) '
