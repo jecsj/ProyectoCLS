@@ -29,7 +29,7 @@ public class restController {
             return "No se a creado correctamente el registro" + HttpStatus.BAD_REQUEST;
   
         }
-        return "se a creado correctamente el registro " + HttpStatus.OK;
+        return "se a creado correcto el registro " + HttpStatus.OK;
 	}
 	
 	
