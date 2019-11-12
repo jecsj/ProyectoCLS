@@ -30,13 +30,12 @@ public class restController {
   
         }
         return "se a creado correcto el registro " + HttpStatus.OK;
-	}
-	
-	
+        }	
 	
 	@RequestMapping (value = "/getUser", method = RequestMethod.GET)
 	public ResponseEntity<Object> getRequestUser() {		
-		return new ResponseEntity<>(usrS.listAll(),HttpStatus.OK);
+		return new ResponseEntity<>(usrS.listAll(),HttpStatus.OK);		
+		
 	}
 		
 	
