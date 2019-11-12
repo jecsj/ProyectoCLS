@@ -22,8 +22,11 @@ public class restController {
 	
 	@Autowired
 	private userService usrS;
+	@Autowired
+	private planLoncheraService plnLoncheraServ;
 	
 	
+	/*Sercicios Usuario Adulto*/
 	@RequestMapping (value = "/addNewUsers", method = RequestMethod.POST)
 	public String addRequestUser(@RequestBody userEntity userNew) {
 		usrS.save(userNew);
@@ -38,14 +41,13 @@ public class restController {
 	public ResponseEntity<Object> getRequestUser() {		
 		return new ResponseEntity<>(usrS.listAll(),HttpStatus.OK);		
 		
-	}
-		
-	@Autowired
-	private planLoncheraService plnLoncheraServ;
+	}		
 	
+	
+	/*Sercicios Plan Lonchera*/
 	
 	@RequestMapping (value = "/addNewPlanLoncheras", method = RequestMethod.POST)
-	public String addRequestUser(@RequestBody planLoncheraEntity plnLonchera) {
+	public String addRequestPlnLonchera(@RequestBody planLoncheraEntity plnLonchera) {
 		plnLoncheraServ.save(plnLonchera);
 		if (plnLonchera.isEmpty()) {
             return "No se a creado correctamente el registro" + HttpStatus.BAD_REQUEST;
