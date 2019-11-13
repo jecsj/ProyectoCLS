@@ -13,8 +13,8 @@ public class userService {
 	@Autowired
 	private usuarioRepo userrepo;
 	
-	public List<userEntity> listAll(){
-		return userrepo.findAll();
+	public userEntity find(String id){
+		return userrepo.getOne(id);
 	}
 	public void save(userEntity user) {
 		userrepo.save(user);

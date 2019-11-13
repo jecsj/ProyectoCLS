@@ -16,7 +16,10 @@ public class userEntity {
 	
 	@Id
 	@Column (name = "identificacion")
-	private String identificacion;
+	private int identificacion;
+	
+	@Column (name = "nombre")
+	private String nombre;
 	
 	@Column (name = "correo")
 	private String correo;
@@ -24,27 +27,33 @@ public class userEntity {
 	@Column (name = "clave")
 	private String clave;
 	
-	@Column (name = "numero_hijos")
-	private int numero_hijos;
-	
-	@Column (name = "alerjias_adulto")
-	private String alerjias_adulto;
-	
 	@Column (name = "plan_lonchera")
 	private int plan_lonchera;
 	
 	@Column (name = "renovacion_automatica")
 	private int renovacion_automatica;
 	
-	@Column (name = "id_hijo")
-	private String id_hijo;
-
-	public String getIdentificacion() {
+	@Column (name = "direccion")
+	private String direccion;
+	
+	
+	
+	public int getIdentificacion() {
 		return identificacion;
 	}
 
-	public void setIdentificacion(String identificacion) {
+	public void setIdentificacion(int identificacion) {
 		this.identificacion = identificacion;
+	}
+	
+	public String getNombre()
+	{
+		return nombre;
+	}
+	
+	public void setNombre(String nombre)
+	{
+		this.nombre = nombre;
 	}
 
 	public String getCorreo() {
@@ -63,22 +72,6 @@ public class userEntity {
 		this.clave = clave;
 	}
 
-	public int getNumero_hijos() {
-		return numero_hijos;
-	}
-
-	public void setNumero_hijos(int numero_hijos) {
-		this.numero_hijos = numero_hijos;
-	}
-
-	public String getAlerjias_adulto() {
-		return alerjias_adulto;
-	}
-
-	public void setAlerjias_adulto(String alerjias_adulto) {
-		this.alerjias_adulto = alerjias_adulto;
-	}
-
 	public int getPlan_lonchera() {
 		return plan_lonchera;
 	}
@@ -94,29 +87,26 @@ public class userEntity {
 	public void setRenovacion_automatica(int renovacion_automatica) {
 		this.renovacion_automatica = renovacion_automatica;
 	}
-
-	public String getId_hijo() {
-		return id_hijo;
+	
+	public String getDireccion() {
+		return direccion;
 	}
 
-	public void setId_hijo(String id_hijo) {
-		this.id_hijo = id_hijo;
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
 	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((alerjias_adulto == null) ? 0 : alerjias_adulto.hashCode());
 		result = prime * result + ((clave == null) ? 0 : clave.hashCode());
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
-		result = prime * result + ((id_hijo == null) ? 0 : id_hijo.hashCode());
-		result = prime * result + ((identificacion == null) ? 0 : identificacion.hashCode());
-		result = prime * result + numero_hijos;
+		result = prime * result + ((direccion == null) ? 0 : direccion.hashCode());
+		result = prime * result + identificacion;
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
 		result = prime * result + plan_lonchera;
 		result = prime * result + renovacion_automatica;
 		return result;
@@ -131,11 +121,6 @@ public class userEntity {
 		if (getClass() != obj.getClass())
 			return false;
 		userEntity other = (userEntity) obj;
-		if (alerjias_adulto == null) {
-			if (other.alerjias_adulto != null)
-				return false;
-		} else if (!alerjias_adulto.equals(other.alerjias_adulto))
-			return false;
 		if (clave == null) {
 			if (other.clave != null)
 				return false;
@@ -146,17 +131,17 @@ public class userEntity {
 				return false;
 		} else if (!correo.equals(other.correo))
 			return false;
-		if (id_hijo == null) {
-			if (other.id_hijo != null)
+		if (direccion == null) {
+			if (other.direccion != null)
 				return false;
-		} else if (!id_hijo.equals(other.id_hijo))
+		} else if (!direccion.equals(other.direccion))
 			return false;
-		if (identificacion == null) {
-			if (other.identificacion != null)
+		if (identificacion != other.identificacion)
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
 				return false;
-		} else if (!identificacion.equals(other.identificacion))
-			return false;
-		if (numero_hijos != other.numero_hijos)
+		} else if (!nombre.equals(other.nombre))
 			return false;
 		if (plan_lonchera != other.plan_lonchera)
 			return false;
@@ -164,27 +149,22 @@ public class userEntity {
 			return false;
 		return true;
 	}
+	
+	
 
 	@Override
 	public String toString() {
-		return "userEntity [identificacion=" + identificacion + ", correo=" + correo + ", clave=" + clave
-				+ ", numero_hijos=" + numero_hijos + ", alerjias_adulto=" + alerjias_adulto + ", plan_lonchera="
-				+ plan_lonchera + ", renovacion_automatica=" + renovacion_automatica + ", id_hijo=" + id_hijo
-				+ ", getIdentificacion()=" + getIdentificacion() + ", getCorreo()=" + getCorreo() + ", getClave()="
-				+ getClave() + ", getNumero_hijos()=" + getNumero_hijos() + ", getAlerjias_adulto()="
-				+ getAlerjias_adulto() + ", getPlan_lonchera()=" + getPlan_lonchera() + ", getRenovacion_automatica()="
-				+ getRenovacion_automatica() + ", getId_hijo()=" + getId_hijo() + ", hashCode()=" + hashCode()
+		return "userEntity [identificacion=" + identificacion + ", nombre=" + nombre + ", correo=" + correo + ", clave="
+				+ clave + ", plan_lonchera=" + plan_lonchera + ", renovacion_automatica=" + renovacion_automatica
+				+ ", direccion=" + direccion + ", getIdentificacion()=" + getIdentificacion() + ", getNombre()="
+				+ getNombre() + ", getCorreo()=" + getCorreo() + ", getClave()=" + getClave() + ", getPlan_lonchera()="
+				+ getPlan_lonchera() + ", getRenovacion_automatica()=" + getRenovacion_automatica()
+				+ ", getDireccion()=" + getDireccion() + ", hashCode()=" + hashCode() + ", isEmpty()=" + isEmpty()
 				+ ", getClass()=" + getClass() + ", toString()=" + super.toString() + "]";
 	}
 
 	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return false;
-	}
-	
-	
-	
-	
-	
-
+	}	
 }
