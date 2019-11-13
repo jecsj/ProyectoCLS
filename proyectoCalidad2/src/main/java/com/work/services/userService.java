@@ -1,8 +1,13 @@
 package com.work.services;
+import java.util.HashSet;
 import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.userdetails.UserDetails;
+import  org.springframework.security.core.userdetails.UserDetailsService;
 
 import com.work.entity.userEntity;
 import com.work.repository.usuarioRepo;
@@ -23,4 +28,6 @@ public class userService {
 	public void delete(String id) {
 		userrepo.deleteById(id);
 	}
+	
+	
 }

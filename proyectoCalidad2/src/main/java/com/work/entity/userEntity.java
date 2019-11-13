@@ -1,9 +1,13 @@
 package com.work.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -36,6 +40,11 @@ public class userEntity {
 	@Column (name = "direccion")
 	private String direccion;
 	
+	 @Transient
+	    private String passwordConfirm;
+
+	    @ManyToMany
+	    private Set<Role> roles;
 	
 	
 	public int getIdentificacion() {
