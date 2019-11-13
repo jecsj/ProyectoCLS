@@ -40,12 +40,7 @@ public class userEntity {
 	@Column (name = "direccion")
 	private String direccion;
 	
-	 @Transient
-	    private String passwordConfirm;
-
-	    @ManyToMany
-	    private Set<Role> roles;
-	
+	 
 	
 	public int getIdentificacion() {
 		return identificacion;

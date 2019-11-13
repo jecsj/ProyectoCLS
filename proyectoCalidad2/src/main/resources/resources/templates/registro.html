@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registro</title>
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <scripts rc="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Los iconos tipo
+        Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/registro.css">
+</head>
+
+<body>
+    <main>
+
+    </main>
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-12 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="static/img/avatar.png" alt="">
+                </div>
+                <div class="col-12 tituloRegistro">
+                    <h1>Crear nueva cuenta</h1>
+                </div>
+                <form class="col-12 needs-validation" novalidate>
+                    <div class="form-group" id="nombre-group">
+                        <input type="text" class="form-control" placeholder="Primer nombre" required pattern="[A-Za-zÀ-ÿ\u00f1\u00d1]{2,30}">
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su primer nombre.</div>
+                    </div>
+                    <div class="form-group" id="apellido-group">
+                        <input type="text" class="form-control" placeholder="Primer apellido" required pattern="[A-Za-zÀ-ÿ\u00f1\u00d1]{2,30}">
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su primer apellido.</div>
+                    </div>
+                    <div class="form-group" id="correo-group">
+                        <input type="email" class="form-control" placeholder="Correo: ejemplo@email.com" minlength="7" maxlength="200" required>
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su correo.</div>
+                    </div>
+                    <div class="form-group" id="telefono-group">
+                        <input type="number" class="form-control" placeholder="Teléfono" min="1000000" max="9999999999" required>
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su teléfono.</div>
+                    </div>
+                    <div class="form-group" id="user-group">
+                        <input type="number" class="form-control" placeholder="Número de identificación" min="10000000" max="9999999999"required>
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su número de identificación</div>
+                    </div>
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" class="form-control" placeholder="Contraseña" minlength="4" maxlength="50" required>
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su contraseña.</div>
+                    </div>
+                    <div class="form-group" id="terminos-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="invalidCheck3"
+                                required>
+                                
+                            <label class="form-check-label" for="invalidCheck3">
+                                <a href="#">Acepto los términos y condiciones.</a>
+                            </label>
+
+                            <div class="valid-feedback">Ok.</div>
+                            <div class="invalid-feedback">Por favor acepte antes de continuar.</div>      
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-user-plus"></i> Registrarse</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // Disable form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
+</body>
+
+</html>

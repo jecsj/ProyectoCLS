@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 import com.work.entity.*;
 
 @Repository
-public interface alergias_usuariosRepo  extends JpaRepository<adminEntity, String>
+public interface alergias_usuariosRepo  extends JpaRepository<alergias_usuariosEntity, String>
 {
 
 }

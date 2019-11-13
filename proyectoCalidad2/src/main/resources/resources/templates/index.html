@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Inicio de sesión</title>
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <scripts rc="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <!-- Los iconos tipo
+        Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/index.css">
+</head>
+
+<body>
+    <main>
+    
+    </main>
+
+    <div class="modal-dialog text-center">
+        <div class="col-sm-9 main-section">
+            <div class="modal-content">
+                <div class="col-12 user-img">
+                    <img src="static/img/avatar.png" alt="">
+                </div>
+                <div class="col-12 tituloInicio">
+                    <h1>Iniciar sesión</h1>
+                </div>
+                <form id="formularioInicio" class="col-12 needs-validation" novalidate>
+                    <div class="form-group" id="user-group">
+                        <input type="number" name="identificacion" class="form-control" placeholder="Número de identificación"
+                             min="10000000" max="9999999999" required>
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su número de identificación.</div>
+                    </div>
+                    <div class="form-group" id="contrasena-group">
+                        <input type="password" name="contrasena" class="form-control" placeholder="Contraseña"  minlength="4"
+                            maxlength="50" required>
+                        <div class="valid-feedback">Ok.</div>
+                        <div class="invalid-feedback">Por favor ingrese su contraseña.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Disable form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Get the forms we want to add validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        else{
+                            processForm(event)
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+       
+        //capturar formualrio js
+        function getFormData(formId) {
+            alert(formId);
+            alert("estoy en get formukario");
+            var config = {};
+            let formValues = {};
+            var form1Inputs = document.forms[formId].getElementsByTagName("input");
+
+
+            for (let i = 0; i < form1Inputs.length; i++) {
+                formValues[form1Inputs[i].name] = form1Inputs[i].value;
+            }
+            alert(formValues);
+            console.log(formValues);
+            alert(JSON.stringify(formValues)); 
+
+
+            fetch('http://localhost:8080/getUser', {
+                method: 'GET', // or 'PUT'
+                body: JSON.stringify(formValues), // data can be `string` or {object}!
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .catch(error => console.error('Error:', error))
+                .then(response => console.log('Success:', response));
+        }
+       
+        function processForm(e) {
+            if (e.preventDefault) e.preventDefault();
+            alert('estoy en process');
+            /* do what you want with the form */
+           getFormData('formularioInicio');
+            // You must return false to prevent the default form behavior
+            return false;
+        }
+
+
+
+        // var form = document.getElementById('formularioInicio');
+        // if (form.attachEvent) {
+        //     form.attachEvent("submit", processForm);
+        // } else {
+        //     form.addEventListener("submit", processForm);
+        // }       
+    </script>
+</body>
+
+</html>
